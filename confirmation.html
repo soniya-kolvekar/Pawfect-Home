@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Adoption Confirmation - Pawfect Home</title>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Baloo 2', cursive;
+      margin: 0;
+      background: linear-gradient(to bottom right, #fff1f1, #ffe9e4, #fff8f0);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .confirmation-container {
+      background: white;
+      padding: 30px 40px;
+      border-radius: 15px;
+      box-shadow: 0 6px 15px rgba(255, 155, 133, 0.3);
+      width: 100%;
+      max-width: 450px;
+      box-sizing: border-box;
+      text-align: center;
+    }
+    h2 {
+      color: #4a2c2a;
+      margin-bottom: 20px;
+    }
+    p {
+      font-size: 1.1rem;
+      margin: 12px 0;
+      color: #7a4b48;
+    }
+    .request-number {
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: #e07a5f;
+      margin-top: 15px;
+    }
+    .pet-fact {
+      margin-top: 25px;
+      font-style: italic;
+      color: #b35c4a;
+    }
+    .pet-image {
+      margin: 20px auto;
+      width: 200px;
+      height: 200px;
+      border-radius: 15px;
+      object-fit: cover;
+      box-shadow: 0 3px 10px rgba(255, 155, 133, 0.5);
+    }
+    .back-link {
+      display: inline-block;
+      margin-top: 30px;
+      background: #ff9b85;
+      color: white;
+      padding: 12px 25px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 700;
+      transition: background 0.3s;
+    }
+    .back-link:hover {
+      background: #e07a5f;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="confirmation-container">
+    <h2>Adoption Request Confirmed!</h2>
+    <img src="" alt="Pet Image" class="pet-image" id="petImage" />
+    <p><strong>Pet Name:</strong> <span id="petName"></span></p>
+    <p><strong>Applicant Name:</strong> <span id="applicantName"></span></p>
+    <p class="request-number">Request Number: <span id="requestNumber"></span></p>
+    <p class="pet-fact" id="petFact"></p>
+
+    <a href="index.html" class="back-link">Back to Home</a>
+  </div>
+
+  <script>
+    // Get and decode URL parameters
+    function getQueryParams() {
+      const params = {};
+      const searchParams = new URLSearchParams(window.location.search);
+      searchParams.forEach((value, key) => {
+        params[key] = decodeURIComponent(value || "");
+      });
+      return params;
+    }
+
+    // Fun pet facts
+    const petFacts = {
+      "Buddy": "Dogs like Buddy can learn over 100 words and commands!",
+      "Luna": "Cats like Luna sleep for 12-16 hours a day to conserve energy.",
+      "Snowball": "Rabbits like Snowball have nearly 360-degree vision.",
+      "Kiwi": "Parrots like Kiwi can mimic human speech with remarkable accuracy.",
+      "Max": "Dogs like Max have an extraordinary sense of smell 40x better than humans.",
+      "Peachy": "Lovebirds like Peachy form strong pair bonds with their mates.",
+      "Milo": "Cats like Milo communicate using over 100 different sounds.",
+      "Cotton": "Rabbits like Cotton love to dig and burrow to create cozy homes.",
+      "Charlie": "Dogs like Charlie use their tail to communicate emotions.",
+      "Sunny": "Parrots like Sunny can live up to 70 years in captivity!"
+    };
+
+    // Generate random request number
+    function generateRequestNumber() {
+      return Math.floor(100000 + Math.random() * 900000);
+    }
+
+    // Populate page
+    const params = getQueryParams();
+    const petName = params.petName || "Unknown";
+    const applicantName = params.applicantName || "Applicant";
+    const petImg = params.petImg || "";
+    const petFact = petFacts[petName] || "Thank you for giving a loving home!";
+
+    document.getElementById('petName').textContent = petName;
+    document.getElementById('applicantName').textContent = applicantName;
+    document.getElementById('requestNumber').textContent = generateRequestNumber();
+    document.getElementById('petFact').textContent = petFact;
+
+    if (petImg) {
+      document.getElementById('petImage').src = petImg;
+    } else {
+      document.getElementById('petImage').style.display = 'none';
+    }
+  </script>
+
+</body>
+</html>

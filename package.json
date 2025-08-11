@@ -1,0 +1,14 @@
+{
+  "name": "pet-website",
+  "version": "1.0.0",
+  "description": "this is my pet website",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "soniya",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}

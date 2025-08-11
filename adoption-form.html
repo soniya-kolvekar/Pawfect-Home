@@ -1,0 +1,128 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Adopt a Pet - Pawfect Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700&display=swap" rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Baloo 2', cursive;
+            margin: 0;
+            background: linear-gradient(to bottom right, #fff1f1, #ffe9e4, #fff8f0);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .form-container {
+            background: white;
+            padding: 30px 40px;
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(255, 155, 133, 0.3);
+            width: 100%;
+            max-width: 400px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        h2 {
+            margin-bottom: 25px;
+            color: #4a2c2a;
+        }
+        label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 6px;
+            font-weight: 600;
+            color: #7a4b48;
+            text-align: left;
+        }
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border: 2px solid #ff9b85;
+            border-radius: 8px;
+            font-size: 1rem;
+            resize: vertical;
+            font-family: 'Baloo 2', cursive;
+        }
+        textarea {
+            min-height: 80px;
+        }
+        input[type="submit"] {
+            margin-top: 25px;
+            background: #ff9b85;
+            border: none;
+            padding: 12px 0;
+            width: 100%;
+            color: white;
+            font-weight: 700;
+            font-size: 1.1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.3s;
+            font-family: 'Baloo 2', cursive;
+        }
+        input[type="submit"]:hover {
+            background: #e07a5f;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Adoption Request Form</h2>
+    <form id="adoption-form">
+        <!-- Hidden pet info fields -->
+        <input type="hidden" id="petName" name="petName" value="" />
+        <input type="hidden" id="petImg" name="petImg" value="" />
+
+        <label for="applicantName">Name</label>
+        <input type="text" id="applicantName" name="applicantName" placeholder="Your full name" required />
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Your email address" required />
+
+        <label for="reason">Reason for Adoption</label>
+        <textarea id="reason" name="reason" placeholder="Why do you want to adopt?" required></textarea>
+
+        <input type="submit" value="Submit Adoption Request" />
+    </form>
+</div>
+
+<script>
+    const params = new URLSearchParams(window.location.search);
+        const petName = params.get('name') || '';
+        const petImg = params.get('img') || '';
+
+        // Store in hidden fields
+        document.getElementById('petName').value = petName;
+        document.getElementById('petImg').value = petImg;
+
+        // Handle form submission
+        document.getElementById('adoption-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const applicantName = document.getElementById('applicantName').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const reason = document.getElementById('reason').value.trim();
+
+            if (!applicantName || !email || !reason) {
+                alert("Please fill in all required fields.");
+                return;
+            }
+
+            const queryParams = new URLSearchParams({
+                petName: petName,
+                petImg: petImg,
+                applicantName: applicantName,
+                email: email,
+                reason: reason
+            });
+
+            window.location.href = 'confirmation.html?' + queryParams.toString();
+        });
+</script>
+
+</body>
+</html>
