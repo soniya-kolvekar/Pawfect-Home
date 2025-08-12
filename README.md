@@ -1,6 +1,10 @@
 #🐾 Pawfect Home
 
 
+
+
+
+
 Pawfect Home is a pet adoption platform where loving homes meet adorable pets in need. Browse, search, and connect with your future furry friend — all in one place.
 
 ✨ Features
